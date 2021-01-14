@@ -23,6 +23,7 @@ function main(){
     // console.log(findPrevious(SLL, "First"))
     // console.log(findLast(new LinkedList()))
     // reverse(SLL.head)
+    reverse(SLL)
     display(SLL)
 }
 
@@ -37,13 +38,18 @@ const display = (list) => {
 }
 
 const reverse = (list) => {
-    if (list.next === null){
-         list.head = list;
-         return;
+    let current = list.head;
+    let originalHead = list.head;
+    let tempNext;
+    let temp = current.next;
+    while(temp !== null){
+        tempNext = temp.next;
+        temp.next = current;
+        current = temp;
+        temp = tempNext;
     }
-    reverse(list.next);
-    list.next.next = list;
-    list.next = null;
+    list.head = current;
+    originalHead.next = null;
 }
 
 
