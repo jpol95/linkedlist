@@ -16,6 +16,7 @@ function main(){
     // SLL.insertAt(8, "Starbuck")
     SLL.insertAfter("Helo", "Hiya");
     SLL.remove("Boomer");
+    // SLL.remove("Helo")
     SLL.remove("notinlist");
     // removeDuplicates(SLL)
     // console.log(isEmpty(new LinkedList()))
@@ -23,8 +24,21 @@ function main(){
     // console.log(findPrevious(SLL, "First"))
     // console.log(findLast(new LinkedList()))
     // reverse(SLL.head)
-    reverse(SLL)
+    // reverse(SLL)
+    // console.log(hasCycle(SLL))
+    console.log(middle(SLL))
     display(SLL)
+}
+
+const middle = (list) => {
+    let currentNode = list.head;
+    let twiceNode = list.head;
+
+    while (twiceNode !== null && twiceNode.next !== null){
+        twiceNode = twiceNode.next.next;
+        currentNode = currentNode.next;
+    }
+    return currentNode;
 }
 
 const display = (list) => {
@@ -53,6 +67,14 @@ const reverse = (list) => {
 }
 
 
+const thirdFromLast = (list) => {
+    let currentNode = list.head;
+    if (!currentNode || !currentNode.next || !currentNode.next.next) return null;
+    while (currentNode.next.next.next !== null){
+        currentNode = currentNode.next;
+    }
+    return currentNode;
+}
 
 function removeDuplicates(lst) {
     let current = lst.head;
@@ -70,6 +92,16 @@ function removeDuplicates(lst) {
     }
 }
 
+
+const hasCycle = (list) => {
+    let currentNode = list.head;
+    while (currentNode !== null){
+        if (currentNode.flagged) return true;
+        currentNode.flagged = true;
+        currentNode = currentNode.next;
+    }
+    return false;
+}
 
 const findPrevious = (list, item) => {
     let currentNode = list.head;
